@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: #111;
+    transition: 5s;
+}
+
+h1 {
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.copyright {
+    color: #ddd;
+    top: 98%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+
+    font-family: 'Press Start 2P';
+
+    opacity: 50%;
+    font-size: 10px;
+
+    cursor: default;
+}
+
+.yellow {
+    color: #f1e203;
+}
+
+.red {
+    color: #ff0000;
+}
+
+.imgInfo {
+    width: 70px;
+    margin-left: 70px;
+
+    top: -20%;
+
+    position: relative
+}
+
+#start {
+    width: 200px;
+
+    cursor: pointer;
+
+    top: 80%;
+    left: 50%;
+    position: absolute;
+
+    transform: translate(-50%, -50%);
+}
+
+.game-initial {
+    width: 600px;
+    height: 400px;
+    background-color: #000000;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 10px;
+
+    box-shadow: 3px 6px 16px #111;
+
+    border: #ddd solid 7px;
+
+    font-family: 'Press Start 2P', cursive;
+    color: #ddd;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    flex-direction: column;
+}
+
+.textEveryone {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    cursor: default;
+}
+
+.text {
+    margin-bottom: 100px;
+    margin-left: 60px;
+}
+
+.points {
+    width: 250px;
+    height: 100px;
+    background-color: #000000;
+
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 10px;
+
+    border: #ddd solid 7px;
+
+    box-shadow: 3px 6px 16px #111;
+
+    font-family: 'Press Start 2P', cursive;
+    color: #ddd;
+
+    align-items: center;
+    justify-content: center;
+    display: none;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    transition: 2s;
+}
+
+#textOver {
+    color: #ddd;
+    top: 10%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Press Start 2P';
+    font-size: 60px;
+
+    transition: 4.5s;
+
+    display: none;
+    opacity: 0%;
+}
+
+#textOverD {
+    color: #ddd;
+    top: 40%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Press Start 2P';
+    font-size: 20px;
+
+    margin-left: 60px;
+
+    width: 700px;
+
+    transition: 4.5s;
+
+    display: none;
+    opacity: 0;
+
+}
+
+#playAgain {
+    color: #ddd;
+    font-family: 'Press Start 2P';
+    font-size: 20px;
+
+    transition: 1.5s;
+
+    top: 60%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    cursor: pointer;
+
+    display: none;
+    opacity: 0;
+}
+
+#playAgain:hover {
+    color: #f1e203;
+}
+
+.game-board {
+    width: 100%;
+    height: 580px;
+    border-bottom: 12px solid #333;
+    margin: 0 auto;
+    position: relative;
+
+    overflow: hidden;
+
+    background-image: url(./background.jpg);
+    display: none;
+
+}
+
+.spears {
+    width: 700px;
+    position: absolute;
+
+    animation: spears-animation 4s infinite linear;
+}
+
+.spear {
+    position: absolute;
+    bottom: -1%;
+    width: 140px;
+
+    animation: spear-animation 2s infinite linear;
+}
+
+.frisk {
+    width: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 50px
+
+}
+
+.jump {
+    animation: jump 500ms ease-out;
+}
+
+@keyframes spears-animation {
+    from {
+        right: -750px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes spear-animation {
+    from {
+        right: -150px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes jump {
+
+    0% {
+        bottom: 0;
+    }
+
+    40% {
+        bottom: 360px;
+    }
+
+    50% {
+        bottom: 360px;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes up {
+    from {
+        transform: translate(-50%, -50%);
+    }
+    to {
+        top: 20%;
+        left: 50%;
+    }
+}
