@@ -224,6 +224,37 @@ h1 {
     animation: jump 500ms ease-out;
 }
 
+.user {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    position: absolute;
+    top: 0%;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.warning {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 50px;
+    font-family: 'Press Start 2P';
+}
+
+.fa-headphones {
+    color: #fff;
+    opacity: 100%;
+
+    cursor: pointer;
+    scale: 2.5;
+}
+
 @keyframes spears-animation {
     from {
         right: -750px;
@@ -272,3 +303,5 @@ h1 {
         left: 50%;
     }
 }
+
+
