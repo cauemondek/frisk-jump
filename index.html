@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=IBM+Plex+Mono:wght@300&family=Inter:wght@300&family=Montserrat:wght@500&family=Poppins:ital@1&family=Press+Start+2P&family=Raleway:wght@300&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/dc49a974a4.js" crossorigin="anonymous"></script>
+
 </head>
 <body id="background">
     <!-- SOUNDS -->
@@ -29,6 +32,9 @@
 
     <audio id="restartsound">
         <source src="./sounds/Restart.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fightmusic">
+        <source src="./sounds/FightMusic.mp3" type="audio/mpeg">
     </audio>
     <!-- =============== -->
 
@@ -60,6 +66,11 @@
 
         <div class="points" id="table-points">
             <p>Score: </p><br><h1 id="score">0</h1>
+        </div>
+
+        <div class="user" id="warning">
+            <p class="warning">For a better experience, click in the headphones to allow sounds =)</p>
+            <i class="fa-solid fa-headphones" id="clickAccept"></i>
         </div>
     </main>
 
