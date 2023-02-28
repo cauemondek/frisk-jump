@@ -1,16 +1,23 @@
-var limit = false;
-if (!limit){
-document.addEventListener('mousemove', function(){
-    limit = true;
-    setTimeout(function(){
+const warning = document.getElementById('warning');
+
+document.getElementById('clickAccept').addEventListener('click', ()=>{
+    warning.style.display = 'none'
     document.getElementById('soundstartscreen').play();
-}, 1)}
-)
-};
+});
+
+setInterval(()=>{
+    document.getElementById('clickAccept').style.opacity = '0%';
+ setTimeout( ()=> {document.getElementById('clickAccept').style.opacity = '100%'} , 700);
+},1200);
 
 document.getElementById('soundstartscreen').addEventListener("ended", function() {
     document.getElementById('soundstartscreen').currentTime = 0;
     document.getElementById('soundstartscreen').play();
+});
+
+document.getElementById('fightmusic').addEventListener("ended", function() {
+    document.getElementById('fightmusic').currentTime = 0;
+    document.getElementById('fightmusic').play();
 });
 
 const frisk = document.querySelector('.frisk');
@@ -37,15 +44,21 @@ start.addEventListener('click', function(){
     document.getElementById('start-screen').style.display = 'none';
     game.style.display = 'block';
     document.getElementById('table-points').style.display = 'flex';
-    document.getElementById('soundstartscreen').src = './sounds/FightMusic.mp3';
+    document.getElementById('soundstartscreen').src = './';
+    document.getElementById('fightmusic').play();
 });
 
-document.getElementById('playAgain').addEventListener('click', function(){
+const buttonAgain = document.getElementById('playAgain')
+let press = false;
+
+buttonAgain.addEventListener('click', function(){
+    press = true;
     restartGame();
 });
 
 
 function restartGame(){
+    buttonAgain.style.color = '#f1e203';
     document.getElementById('soundgameover').src = './'
     document.getElementById('restartsound').play()
     setTimeout(function(){
@@ -80,7 +93,9 @@ let alive = false;
     };
 
 document.getElementById('playAgain').addEventListener('mouseenter', function(){
+    if (!press){
     document.getElementById('selectedbutton').play();
+    }
 });
 
 document.getElementById('start').addEventListener('mouseenter', function(){
@@ -89,7 +104,6 @@ document.getElementById('start').addEventListener('mouseenter', function(){
 
 
 function startgame(){
-
 const loop = setInterval(function(){
 
     const bonePosition = spear.offsetLeft;
@@ -98,7 +112,7 @@ const loop = setInterval(function(){
     console.log(friskPosition)
     if (bonePosition <= 95 &&  bonePosition > 0 && friskPosition < 260 ) {
         
-        document.getElementById('soundstartscreen').src = './';
+        document.getElementById('fightmusic').src = './';
 
         alive = true;
         spear.style.animation = 'none';
@@ -147,8 +161,6 @@ const loop = setInterval(function(){
         }, 5000);
 
         clearInterval(loop);
-
-
     }
 }, 10);
 
