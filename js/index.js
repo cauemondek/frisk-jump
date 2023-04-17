@@ -1,84 +1,182 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frisk Jump</title>
+const warning = document.getElementById('warning');
 
-    <link rel="stylesheet" href="./css/style.css">
+document.getElementById('clickAccept').addEventListener('click', ()=>{
+    warning.style.display = 'none'
+    document.getElementById('soundstartscreen').play();
+});
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=IBM+Plex+Mono:wght@300&family=Inter:wght@300&family=Montserrat:wght@500&family=Poppins:ital@1&family=Press+Start+2P&family=Raleway:wght@300&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+setInterval(()=>{
+    document.getElementById('clickAccept').style.opacity = '0%';
+ setTimeout( ()=> {document.getElementById('clickAccept').style.opacity = '100%'} , 700);
+},1200);
 
-    <script src="https://kit.fontawesome.com/dc49a974a4.js" crossorigin="anonymous"></script>
+document.getElementById('soundstartscreen').addEventListener("ended", function() {
+    document.getElementById('soundstartscreen').currentTime = 0;
+    document.getElementById('soundstartscreen').play();
+});
 
-</head>
-<body id="background">
-    <!-- SOUNDS -->
-    <audio id="soundgameover">
-        <source src="./sounds/GameOver.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="soundsoulbreak">
-        <source src="./sounds/SoulBreak.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="soundstartscreen">
-        <source src="./sounds/StartScreen.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="selectedbutton">
-        <source src="./sounds/SelectedButton.mp3" type="audio/mpeg">
-    </audio>
+document.getElementById('fightmusic').addEventListener("ended", function() {
+    document.getElementById('fightmusic').currentTime = 0;
+    document.getElementById('fightmusic').play();
+});
 
-    <audio id="restartsound">
-        <source src="./sounds/Restart.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="fightmusic">
-        <source src="./sounds/FightMusic.mp3" type="audio/mpeg">
-    </audio>
-    <!-- =============== -->
+const frisk = document.querySelector('.frisk');
+const spear = document.querySelector('.spear');
+const game = document.querySelector('.game-board');
+const spears = document.querySelector('.spears');
 
-    <main>
-        <div class="game-initial" id="start-screen">
-            <div class="info">
-                <img src="./img/frisk.gif" alt="" class="imgInfo">
-                <img src="./img/spearOne.png" alt="" class="imgInfo">
+const points = document.querySelector('.points');
 
-            </div>
-            <div class="textEveryone">
-            <p>* <span class="yellow">Clique na tela</span> ou pressione a tecla <span class="yellow">"Arrow Up"</span> para pular das lanças! Cuidado para não perder sua <span class="red">alma</span> para Undyne.</p><br>
-            <p class="text">Mantenha sua <span class="yellow">DETERMINAÇÃO</span>.</p>
-        </div>
-            <img src="./img/button.png" alt="" id="start">
+let start = document.getElementById('start');
+start.addEventListener('mouseenter', function(){
+    start.src = './img/buttonhover.png';
+    start.style.boxShadow = '0px 0px 8px #eded01';
+});
 
-        </div>
-        <div class="game-board" id="game-board">
-            <img src="./img/spears.png" alt="" class="spears">
-            <img src="./img/frisk.gif" alt="" class="frisk">
-            <img src="./img/spearOne.png" class="spear">
-        </div>
+start.addEventListener('mouseleave', function(){
+    start.src = './img/button.png';
+    start.style.boxShadow = 'none';
+});
 
-        <div >
-            <h1 id="textOver">Game Over</h1>
-            <p id="textOverD">Frisk! <br><br>Você deve se manter <span class="yellow">DETERMINADO</span>.</p>
-            <h1 id="playAgain">Jogar novamente?</h1>
-        </div>
+start.addEventListener('click', function(){
+    startgame();
+    startScore();
+    document.getElementById('start-screen').style.display = 'none';
+    game.style.display = 'block';
+    document.getElementById('table-points').style.display = 'flex';
+    document.getElementById('soundstartscreen').src = './';
+    document.getElementById('fightmusic').play();
+});
 
-        <div class="points" id="table-points">
-            <p>Score: </p><br><h1 id="score">0</h1>
-        </div>
+const buttonAgain = document.getElementById('playAgain')
+let press = false;
 
-        <div class="user" id="warning">
-            <p class="warning">For a better experience, click in the headphones to allow sounds =)</p>
-            <i class="fa-solid fa-headphones" id="clickAccept"></i>
-        </div>
-    </main>
+buttonAgain.addEventListener('click', function(){
+    press = true;
+    restartGame();
+});
 
-    <p class="copyright">&copy; Frisk Jump Game, Cauê Guise Mondek, <span id="ano"></span></p>
-    <script>
-            const year = document.querySelector('#ano');
-            ano.innerHTML = new Date().getFullYear();
-    </script>
-    <script src="./js/index.js"></script>
-</body>
-</html>
+
+function restartGame(){
+    buttonAgain.style.color = '#f1e203';
+    setTimeout(function(){
+        document.location.reload(true);
+    }, 500);
+};
+
+function jump (){
+    frisk.classList.add('jump');
+
+    setTimeout(function(){
+        frisk.classList.remove('jump');
+    }, 500);
+};
+
+function deadSoul (){
+    frisk.classList.add('soul');
+};
+
+const scoreDisplay = document.getElementById('score');
+let score = 0;
+let alive = false;
+    function startScore(){
+        
+        if (!alive){
+            score++
+        scoreDisplay.innerHTML = score;
+        setTimeout(startScore, 60)
+        } else {
+            score = score;
+        };
+    };
+
+document.getElementById('playAgain').addEventListener('mouseenter', function(){
+    if (!press){
+    document.getElementById('selectedbutton').play();
+    }
+});
+
+document.getElementById('start').addEventListener('mouseenter', function(){
+    document.getElementById('selectedbutton').play();
+});
+
+
+function startgame(){
+const loop = setInterval(function(){
+
+    const bonePosition = spear.offsetLeft;
+    const friskPosition = +window.getComputedStyle(frisk).bottom.replace('px','')
+    
+    console.log(friskPosition)
+    if (bonePosition <= 95 &&  bonePosition > 0 && friskPosition < 260 ) {
+        
+        document.getElementById('fightmusic').src = './';
+
+        alive = true;
+        spear.style.animation = 'none';
+        spear.style.left = bonePosition + 'px';
+
+        frisk.style.animation = 'none';
+        frisk.style.bottom = (friskPosition +  'px');
+        frisk.style.marginLeft = '10px';
+        frisk.style.marginBottom = '50px';
+
+        frisk.src = './img/soul.png';
+        frisk.style.width = '30px';
+
+        game.style.backgroundImage = 'none';
+        spears.style.display = 'none';
+        game.style.backgroundColor = '#000000';
+        document.getElementById('soundsoulbreak').play();
+
+        setTimeout(function(){
+            frisk.src = './img/soul-break.png';
+            game.style.transition = '2.5s';
+            document.getElementById('textOver').style.display = 'block';
+        }, 1300);
+
+        setTimeout(function(){
+            document.getElementById('soundgameover').play();
+            game.style.opacity = '0%';
+            document.getElementById('textOver').style.opacity = '100%';
+            document.getElementById('background').style.background = '#000000';
+            game.style.display = 'none';
+            points.style.color = '#f1e203';
+            points.style.boxShadow = 'none';
+            points.style.border = '0';
+            points.style.background = 'none';
+        }, 2400);
+
+        setTimeout(function(){
+            points.style.animation = 'up 3.5s';
+            document.getElementById('playAgain').style.display = 'block';
+            document.getElementById('textOverD').style.display = 'block';
+            setTimeout(function(){
+                points.style.top = '20%'
+                document.getElementById('playAgain').style.opacity = '100%';
+                document.getElementById('textOverD').style.opacity = '100%';
+            }, 3500);
+        }, 5000);
+
+        clearInterval(loop);
+    }
+}, 10);
+
+
+setTimeout(()=>{
+    document.addEventListener('keydown', function(){
+        if (event.code === 'ArrowUp') {
+            jump();
+        }
+    });
+    
+    document.addEventListener('click', ()=>{
+        jump();
+    });
+
+}, 200);
+
+
+};
+
+// console.log(window.innerWidth)
