@@ -59,11 +59,9 @@ buttonAgain.addEventListener('click', function(){
 
 function restartGame(){
     buttonAgain.style.color = '#f1e203';
-    document.getElementById('soundgameover').src = './'
-    document.getElementById('restartsound').play()
     setTimeout(function(){
         document.location.reload(true);
-    }, 5100);
+    }, 500);
 };
 
 function jump (){
@@ -164,9 +162,21 @@ const loop = setInterval(function(){
     }
 }, 10);
 
-document.addEventListener('keydown', function(){
-    if (event.code === 'ArrowUp') {
+
+setTimeout(()=>{
+    document.addEventListener('keydown', function(){
+        if (event.code === 'ArrowUp') {
+            jump();
+        }
+    });
+    
+    document.addEventListener('click', ()=>{
         jump();
-    }
-});
+    });
+
+}, 200);
+
+
 };
+
+// console.log(window.innerWidth)
