@@ -1,2 +1,7 @@
-# frisk-jump
-> **Game Jump / Frisk Jump:** Feito com Javascript, jogo com o objetivo de pular das lanças e marcar a maior pontuação possível.
+<h2 align="center">Frisk Jump</h2>
+<p align="center">A Game with the objective of jumping from spears and scoring the highest possible score.</p>
+
+## 🔨 Built with
+- HTML
+- CSS
+- Javascript
