@@ -8,6 +8,6 @@
 **You can download it and initialize it on your system or access it through GitHub Pages.**
 
 ## 🔨 Built with
-- HTML
-- CSS
-- Javascript
+- ``HTML``
+- ``CSS``
+- ``Javascript``
